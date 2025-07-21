@@ -19,6 +19,7 @@ float[][][][] inputMat;
 float[][][][] ip;
 
 void setup() {
+  pixelDensity(1);
   fullScreen(P3D);
   inputMat = new float[1][1][32][32];
 
@@ -27,7 +28,6 @@ void setup() {
   canvas.background(0);
   canvas.endDraw();
   visualization = createGraphics(3*width/4, height, P3D);
-  visualization.smooth(16);
   visualization.beginDraw();
   visualization.background(0);
   visualization.endDraw();
@@ -206,16 +206,18 @@ void draw() {
 }
 
 void keyPressed() {
-  canvas.beginDraw();
-  canvas.background(0);
-  canvas.endDraw();
-
-  for (int i = 0; i < 32; i ++) {
-    for (int j = 0; j < 32; j ++) {
-      inputMat[0][0][j][i] = 0.0;
+  if (key == ' ') {
+    canvas.beginDraw();
+    canvas.background(0);
+    canvas.endDraw();
+  
+    for (int i = 0; i < 32; i ++) {
+      for (int j = 0; j < 32; j ++) {
+        inputMat[0][0][j][i] = 0.0;
+      }
     }
+    forward();
   }
-  forward();
 }
 
 void forward() {
